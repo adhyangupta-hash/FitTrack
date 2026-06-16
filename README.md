@@ -1,6 +1,6 @@
 # FitTrack Pro - All-in-One Fitness Platform (MVP)
 
-FitTrack Pro is a high-fidelity, unified web fitness platform. The design is inspired by the premium **FitMonks** Framer template, featuring an immersive dark-theme layout, glassmorphic panels, neon highlights (lime green, cyan, orange), and smooth micro-animations.
+FitTrack Pro is a high-fidelity, unified web fitness platform. 
 
 This application is built as a self-contained Single Page Application (SPA) utilizing:
 - **Structure:** HTML5 Semantic Elements
