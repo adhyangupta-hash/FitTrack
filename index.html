@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitmonks AI - All-in-One Fitness Workspace</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Track workouts, learn exercises through HD videos, monitor weight, manage nutrition, and consult your AI fitness coach in a unified dark-theme dashboard.">
+  <meta name="author" content="Fitmonks Team">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232980ff' stroke-width='2'%3E%3Cpath d='m6.5 6.5 11 11M6.5 17.5l11-11'/%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3C/svg%3E">
+  
+  <!-- Styling and Fonts -->
+  <link rel="stylesheet" href="index.css">
+  
+  <!-- Third Party Libraries via CDN -->
+  <!-- Chart.js for beautiful progress analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Lucide Icons for high-fidelity stroke icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ============================================== -->
+  <!-- A. SAAS LANDING PAGE (Visible when logged out) -->
+  <!-- ============================================== -->
+  <div id="landing-page-container">
+    
+    <!-- Landing Navigation Header -->
+    <header class="landing-header">
+      <div class="landing-logo">
+        <div class="logo-icon">
+          <i data-lucide="dumbbell" style="stroke-width: 2.5px;"></i>
+        </div>
+        <span class="logo-text">Fitmonks AI</span>
+      </div>
+      <nav class="landing-nav-links">
+        <a href="#features-section">Features</a>
+        <a href="#workouts-section">Workouts</a>
+        <a href="#progress-section">Progress</a>
+        <a href="#pricing-section">Pricing</a>
+      </nav>
+      <div class="landing-nav-actions">
+        <button class="btn btn-secondary btn-magnetic" onclick="openAuthModal('signin')">Sign In</button>
+        <button class="btn btn-primary btn-magnetic" onclick="openAuthModal('signup')">Get Started</button>
+      </div>
+    </header>
+
+    <!-- Floating Background Orbs for Luxury Aesthetic -->
+    <div class="gradient-orb orb-blue"></div>
+    <div class="gradient-orb orb-green"></div>
+
+    <!-- Hero Section -->
+    <section class="landing-hero reveal active">
+      <div class="hero-left">
+        <span class="hero-badge"><i data-lucide="sparkles" style="width: 14px; height: 14px; color: var(--neon-cyan);"></i> Powered by Adaptive AI</span>
+        <h1 class="hero-title">Train Smarter.<br>Progress Faster.</h1>
+        <p class="hero-subtitle">
+          An immersive, YC-style all-in-one workspace to log workouts, watch HD tutorials, analyze macros, and get real-time training adjustments.
+        </p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary btn-hero btn-magnetic pulse-glow" onclick="openAuthModal('signup')">
+            Start Free <i data-lucide="arrow-right"></i>
+          </button>
+          <button class="btn btn-secondary btn-hero btn-magnetic" onclick="playLandingDemoVideo()">
+            <i data-lucide="play-circle"></i> Watch Demo
+          </button>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-avatars">
+            <span style="background: var(--neon-lime); color:#fff">A</span>
+            <span style="background: var(--neon-cyan); color:#000">K</span>
+            <span style="background: var(--neon-orange); color:#000">M</span>
+          </div>
+          <span style="font-size: 0.85rem; color: var(--text-secondary);">Trusted by 10,000+ elite athletes and trainers.</span>
+        </div>
+      </div>
+
+      <!-- Hero Visuals (Interactive Dashboard Preview Card) -->
+      <div class="hero-right">
+        <div class="card preview-card">
+          <div class="preview-header">
+            <div style="display:flex; align-items:center; gap:0.5rem">
+              <span class="preview-dot" style="background:#ff5e00"></span>
+              <span class="preview-dot" style="background:var(--neon-cyan)"></span>
+              <span class="preview-dot" style="background:var(--neon-lime)"></span>
+            </div>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Fitmonks Workspace Preview</span>
+          </div>
+          <div class="preview-widget-grid">
+            <div class="preview-widget">
+              <div class="preview-widget-icon icon-orange"><i data-lucide="flame"></i></div>
+              <div>
+                <div class="preview-widget-val">1,650 kcal</div>
+                <div class="preview-widget-lbl">Logged Today</div>
+              </div>
+            </div>
+            <div class="preview-widget">
+              <div class="preview-widget-icon icon-lime" style="color:var(--neon-cyan); background:rgba(57,255,20,0.1);"><i data-lucide="zap"></i></div>
+              <div>
+                <div class="preview-widget-val">5 Day Streak</div>
+                <div class="preview-widget-lbl">Consistency Level</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--border-radius-md);">
+            <div style="display:flex; justify-content:space-between; font-size: 0.8rem; margin-bottom: 0.5rem;">
+              <strong>Active Set: Barbell Squat</strong>
+              <span style="color:var(--neon-cyan); font-weight:700;">00:45</span>
+            </div>
+            <div style="display:flex; gap:0.5rem; font-size:0.75rem; color:var(--text-secondary);">
+              <span>Set 1: 100kg x 8 ✓</span>
+              <span>Set 2: 110kg x 6 ✓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-sponsors-section reveal">
+      <div class="trust-stats-grid" style="display: flex; justify-content: space-around; width: 100%; max-width: 900px; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 2rem;">
+        <div class="trust-stat" style="text-align: center;">
+          <h3 class="stat-number" data-target="10000" style="font-size: 2.5rem; font-weight: 800; color: var(--neon-lime); margin-bottom: 0.25rem;">0</h3>
+          <span class="stat-label" style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Active Athletes</span>
+        </div>
+        <div class="trust-stat" style="text-align: center;">
+          <h3 class="stat-number" data-target="500000" style="font-size: 2.5rem; font-weight: 800; color: var(--neon-cyan); margin-bottom: 0.25rem;">0</h3>
+          <span class="stat-label" style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Workouts Logged</span>
+        </div>
+        <div class="trust-stat" style="text-align: center;">
+          <h3 class="stat-number" data-target="95" style="font-size: 2.5rem; font-weight: 800; color: var(--neon-orange); margin-bottom: 0.25rem;">0</h3>
+          <span class="stat-label" style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">User Retention Rate</span>
+        </div>
+      </div>
+      
+      <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); font-weight:700; margin-bottom: 1rem;">TRUSTED PARTNERS & INTEGRATIONS</span>
+      <div class="sponsor-logos">
+        <div class="sponsor-logo"><i data-lucide="shield-check"></i> SafeFit</div>
+        <div class="sponsor-logo"><i data-lucide="heart-pulse"></i> CardioPlus</div>
+        <div class="sponsor-logo"><i data-lucide="activity"></i> PeakTrack</div>
+        <div class="sponsor-logo"><i data-lucide="zap"></i> Energetic</div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features-section" class="landing-section reveal">
+      <div class="section-header">
+        <span class="section-tag" style="color: var(--neon-cyan)">Features</span>
+        <h2 class="section-title">Engineered to Maximize Your Progress</h2>
+        <p class="section-subtitle">Everything you need to plan, track, and analyze your fitness in a single high-performance workspace.</p>
+      </div>
+
+      <div class="landing-features-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+        <div class="card feature-grid-card card-lift">
+          <div class="feature-icon" style="color:var(--neon-lime); background:rgba(41,128,255,0.08);"><i data-lucide="clipboard-list"></i></div>
+          <h3>Workout Tracking</h3>
+          <p>Track sets, reps, weights, rest times, and personal records with auto-save and active rest timers.</p>
+        </div>
+        <div class="card feature-grid-card card-lift">
+          <div class="feature-icon" style="color:var(--neon-cyan); background:rgba(57,255,20,0.08);"><i data-lucide="video"></i></div>
+          <h3>Exercise Video Library</h3>
+          <p>HD demonstrations with expert guidance, form instructions, and lists of common mistakes.</p>
+        </div>
+        <div class="card feature-grid-card card-lift">
+          <div class="feature-icon" style="color:var(--neon-orange); background:rgba(252,201,70,0.08);"><i data-lucide="sparkles"></i></div>
+          <h3>AI Fitness Coach</h3>
+          <p>Personalized recommendations, prompt adjustments, and meal splits calculated on your bio parameters.</p>
+        </div>
+        <div class="card feature-grid-card card-lift">
+          <div class="feature-icon" style="color:#a855f7; background:rgba(168,85,247,0.08);"><i data-lucide="trending-up"></i></div>
+          <h3>Progress Analytics</h3>
+          <p>Advanced weight logs, BMI gauges, and workout volume charts automatically synced with your logs.</p>
+        </div>
+        <div class="card feature-grid-card card-lift">
+          <div class="feature-icon" style="color:var(--neon-lime); background:rgba(41,128,255,0.08);"><i data-lucide="apple"></i></div>
+          <h3>Nutrition Tracking</h3>
+          <p>Log calories, macro distributions, and daily hydration progress with circular progress indicators.</p>
+        </div>
+        <div class="card feature-grid-card card-lift">
+          <div class="feature-icon" style="color:var(--neon-cyan); background:rgba(57,255,20,0.08);"><i data-lucide="target"></i></div>
+          <h3>Goal Management</h3>
+          <p>Track active fitness milestones, weekly session consistency frequencies, and hydration targets.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase Part 1: AI Coach Preview -->
+    <section id="ai-preview-section" class="landing-section reveal" style="background: radial-gradient(circle at 80% 50%, rgba(41, 128, 255, 0.04), transparent 50%);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+        <div>
+          <span class="section-tag" style="color: var(--neon-cyan)">AI COACHING</span>
+          <h2 class="section-title" style="margin-top: 0.5rem;">Meet Your Personalized Trainer</h2>
+          <p class="section-subtitle" style="text-align: left; margin-left: 0; margin-bottom: 1.5rem;">
+            Consult our context-aware AI coach. It reads your current weight, active goals, and logs to formulate personalized diet structures or adjust daily workout routines.
+          </p>
+          <div style="display:flex; flex-direction:column; gap:0.75rem;">
+            <div style="display:flex; align-items:center; gap:0.5rem; font-size: 0.95rem;">
+              <i data-lucide="check" style="color:var(--neon-cyan); width: 18px; height: 18px;"></i>
+              <span>"I only have 30 minutes today" – loads custom HIIT layouts</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.5rem; font-size: 0.95rem;">
+              <i data-lucide="check" style="color:var(--neon-cyan); width: 18px; height: 18px;"></i>
+              <span>"Recommend a diet routine" – splits macros on your goal weight</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.5rem; font-size: 0.95rem;">
+              <i data-lucide="check" style="color:var(--neon-cyan); width: 18px; height: 18px;"></i>
+              <span>"Explain Squat safety rules" – highlights key joint checks</span>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="margin-top: 2rem;" onclick="openAuthModal('signup')">Chat with Coach</button>
+        </div>
+        <div class="card" style="padding:1.5rem; display:flex; flex-direction:column; gap:1rem; border-color: rgba(41, 128, 255, 0.15);">
+          <div style="display:flex; align-items:center; gap:0.5rem; font-weight:700;">
+            <i data-lucide="sparkles" style="color:var(--neon-lime);"></i> AI Coach Chat
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.75rem; font-size:0.85rem;">
+            <div style="align-self:flex-end; background:var(--neon-lime); color:#fff; padding:0.6rem 0.8rem; border-radius:10px 10px 0 10px; max-width: 80%; font-weight: 500;">
+              I only have 30 minutes today.
+            </div>
+            <div style="align-self:flex-start; background:rgba(255,255,255,0.02); border:1px solid var(--border-color); padding:0.6rem 0.8rem; border-radius:10px 10px 10px 0; max-width: 80%; line-height:1.4;">
+              Here is a 30-minute HIIT circuit. I will load squats, push-ups, and planks directly into your workout tracker!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase Part 2: Dynamic Workout Logger -->
+    <section id="workouts-section" class="landing-section reveal" style="background: radial-gradient(circle at 20% 50%, rgba(57, 255, 20, 0.04), transparent 50%); margin-top: 4rem;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+        <div class="card card-lift" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; border-color: rgba(41, 128, 255, 0.15); order: 2;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:0.5rem; font-weight:700;">
+              <i data-lucide="dumbbell" style="color:var(--neon-cyan);"></i> Active Session
+            </div>
+            <span style="font-family:monospace; color:var(--neon-cyan); font-weight:800;">00:48:12</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.75rem;">
+            <div style="padding: 0.75rem; background:rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--border-radius-md);">
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:700; margin-bottom:0.25rem;">
+                <span>1. Romanian Deadlift</span>
+                <span style="color:var(--text-muted);">3 Sets</span>
+              </div>
+              <div style="font-size:0.75rem; color:var(--text-secondary);">Set 1: 80kg x 10 ✓</div>
+            </div>
+            <div style="padding: 0.75rem; background:rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--border-radius-md);">
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:700; margin-bottom:0.25rem;">
+                <span>2. Pull-up</span>
+                <span style="color:var(--text-muted);">4 Sets</span>
+              </div>
+              <div style="font-size:0.75rem; color:var(--text-secondary);">Set 1: Bodyweight x 12 ✓</div>
+            </div>
+          </div>
+        </div>
+        <div style="order: 1;">
+          <span class="section-tag" style="color:var(--neon-cyan)">ACTIVE LOGGING</span>
+          <h2 class="section-title" style="margin-top: 0.5rem;">Intelligent Workout Engine</h2>
+          <p class="section-subtitle" style="text-align: left; margin-left: 0; margin-bottom: 1.5rem;">
+            Log sets, weights, and reps on the fly. Built-in timers alert you exactly when your rest interval completes so you remain in optimal muscle hypertrophy thresholds.
+          </p>
+          <button class="btn btn-primary" onclick="openAuthModal('signup')">Log Your First Session</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workout Video Showcase Section (Netflix-Style) -->
+    <section class="landing-section reveal" style="padding-top: 4rem; padding-bottom: 4rem;">
+      <div class="section-header" style="max-width: 800px;">
+        <span class="section-tag" style="color:var(--neon-lime)">EXERCISE VIDEO LIBRARY</span>
+        <h2 class="section-title">HD Video Demonstrations</h2>
+        <p class="section-subtitle">Watch professional loop demonstrations to guide your form, execute joint-safety checks, and avoid common injuries.</p>
+      </div>
+      <div style="display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 1.25rem; margin-bottom: 2rem;">
+        <div class="category-tab active">All Library Videos</div>
+        <div class="category-tab">Strength Training</div>
+        <div class="category-tab">Chest & Back</div>
+        <div class="category-tab">Shoulders & Arms</div>
+        <div class="category-tab">Legs & Core</div>
+      </div>
+      <div class="video-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
+        <!-- Card 1 -->
+        <div class="card video-card card-lift" style="padding:0; overflow:hidden;">
+          <div class="video-card-thumbnail-container" style="height:170px;">
+            <img src="https://images.pexels.com/photos/1552244/pexels-photo-1552244.jpeg?auto=compress&cs=tinysrgb&w=500" class="video-card-thumbnail" style="width:100%; height:100%; object-fit:cover;">
+            <div class="video-card-overlay">
+              <span class="video-card-category" style="color:var(--neon-cyan);">Legs</span>
+              <div class="video-play-btn"><i data-lucide="play" style="fill:currentColor; margin-left: 2px;"></i></div>
+              <span class="video-duration">0:15 Loop</span>
+            </div>
+          </div>
+          <div style="padding: 1rem; background-color: var(--bg-card); display:flex; flex-direction:column; gap:0.25rem;">
+            <span class="video-card-title">Barbell Back Squat</span>
+            <span style="font-size:0.75rem; color:var(--text-secondary)">Quads, Glutes & Hamstrings</span>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="card video-card card-lift" style="padding:0; overflow:hidden;">
+          <div class="video-card-thumbnail-container" style="height:170px;">
+            <img src="https://images.pexels.com/photos/1552244/pexels-photo-1552244.jpeg?auto=compress&cs=tinysrgb&w=500" class="video-card-thumbnail" style="width:100%; height:100%; object-fit:cover; filter: hue-rotate(90deg);">
+            <div class="video-card-overlay">
+              <span class="video-card-category" style="color:var(--neon-cyan);">Chest</span>
+              <div class="video-play-btn"><i data-lucide="play" style="fill:currentColor; margin-left: 2px;"></i></div>
+              <span class="video-duration">0:15 Loop</span>
+            </div>
+          </div>
+          <div style="padding: 1rem; background-color: var(--bg-card); display:flex; flex-direction:column; gap:0.25rem;">
+            <span class="video-card-title">Barbell Bench Press</span>
+            <span style="font-size:0.75rem; color:var(--text-secondary)">Chest, Triceps & Anterior Deltoids</span>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="card video-card card-lift" style="padding:0; overflow:hidden;">
+          <div class="video-card-thumbnail-container" style="height:170px;">
+            <img src="https://images.pexels.com/photos/1552244/pexels-photo-1552244.jpeg?auto=compress&cs=tinysrgb&w=500" class="video-card-thumbnail" style="width:100%; height:100%; object-fit:cover; filter: hue-rotate(180deg);">
+            <div class="video-card-overlay">
+              <span class="video-card-category" style="color:var(--neon-cyan);">Back</span>
+              <div class="video-play-btn"><i data-lucide="play" style="fill:currentColor; margin-left: 2px;"></i></div>
+              <span class="video-duration">0:15 Loop</span>
+            </div>
+          </div>
+          <div style="padding: 1rem; background-color: var(--bg-card); display:flex; flex-direction:column; gap:0.25rem;">
+            <span class="video-card-title">Lat Pulldown</span>
+            <span style="font-size:0.75rem; color:var(--text-secondary)">Latissimus Dorsi & Rhomboids</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress Analytics Section -->
+    <section id="progress-section" class="landing-section reveal" style="background: radial-gradient(circle at 80% 50%, rgba(41, 128, 255, 0.04), transparent 50%); padding-top: 4rem; padding-bottom: 4rem;">
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
+        <div>
+          <span class="section-tag" style="color:var(--neon-cyan)">ANALYTICS ENGINE</span>
+          <h2 class="section-title" style="margin-top: 0.5rem;">Interactive Biometrics & Volume Charts</h2>
+          <p class="section-subtitle" style="text-align: left; margin-left: 0; margin-bottom: 1.5rem;">
+            Visualize weight shifts over time, calculate active BMIs, and review total logged tonnage weekly. Integrated automatically via Chart.js datasets.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <div style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 50px; font-size: 0.85rem; font-weight: 600;">
+              <i data-lucide="activity" style="width:14px; height:14px; color:var(--neon-cyan); vertical-align:middle; margin-right:0.25rem;"></i> Weight trend lines
+            </div>
+            <div style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 50px; font-size: 0.85rem; font-weight: 600;">
+              <i data-lucide="bar-chart-3" style="width:14px; height:14px; color:var(--neon-cyan); vertical-align:middle; margin-right:0.25rem;"></i> Logged tonnage totals
+            </div>
+          </div>
+        </div>
+        
+        <div class="card card-lift" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; border-color: rgba(41, 128, 255, 0.15);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:700; font-size:0.95rem;">Weekly Muscle Growth & Volume</span>
+            <span style="font-size:0.75rem; color:var(--neon-cyan); font-weight:700;">+14.2% Peak Volume</span>
+          </div>
+          <!-- Mock Chart Graphic via CSS -->
+          <div style="height: 150px; display: flex; align-items: flex-end; gap: 1rem; padding-top: 1rem; border-bottom: 1px solid var(--border-color);">
+            <div style="flex: 1; height: 35%; background: linear-gradient(to top, rgba(41,128,255,0.1), rgba(41,128,255,0.6)); border-radius: 6px 6px 0 0; position:relative;" title="Mon"><span style="position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; color:var(--text-secondary)">Mon</span></div>
+            <div style="flex: 1; height: 55%; background: linear-gradient(to top, rgba(41,128,255,0.1), rgba(41,128,255,0.6)); border-radius: 6px 6px 0 0; position:relative;" title="Tue"><span style="position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; color:var(--text-secondary)">Tue</span></div>
+            <div style="flex: 1; height: 45%; background: linear-gradient(to top, rgba(41,128,255,0.1), rgba(41,128,255,0.6)); border-radius: 6px 6px 0 0; position:relative;" title="Wed"><span style="position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; color:var(--text-secondary)">Wed</span></div>
+            <div style="flex: 1; height: 80%; background: linear-gradient(to top, rgba(57,255,20,0.1), rgba(57,255,20,0.6)); border-radius: 6px 6px 0 0; position:relative;" title="Thu"><span style="position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; color:var(--text-secondary); font-weight:700;">Thu</span></div>
+            <div style="flex: 1; height: 65%; background: linear-gradient(to top, rgba(41,128,255,0.1), rgba(41,128,255,0.6)); border-radius: 6px 6px 0 0; position:relative;" title="Fri"><span style="position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; color:var(--text-secondary)">Fri</span></div>
+            <div style="flex: 1; height: 95%; background: linear-gradient(to top, rgba(41,128,255,0.1), rgba(41,128,255,0.6)); border-radius: 6px 6px 0 0; position:relative;" title="Sat"><span style="position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:0.7rem; color:var(--text-secondary)">Sat</span></div>
+          </div>
+          <div style="margin-top: 1rem; display:flex; justify-content:space-around; font-size:0.8rem; text-align:center;">
+            <div><strong style="color:var(--neon-cyan)">6,200 kg</strong><div style="font-size:0.7rem; color:var(--text-secondary)">Total Sets Volume</div></div>
+            <div><strong style="color:var(--neon-lime)">74.2 kg</strong><div style="font-size:0.7rem; color:var(--text-secondary)">Avg Body Weight</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing-section" class="landing-section reveal">
+      <div class="section-header">
+        <span class="section-tag" style="color:var(--neon-cyan)">Pricing</span>
+        <h2 class="section-title">Choose Your Fitness Track</h2>
+        <p class="section-subtitle">Unlock unlimited workout logging, advanced analytics, and custom AI coach modules.</p>
+      </div>
+
+      <div class="landing-pricing-grid" style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; align-items: stretch; max-width: 1100px; margin: 0 auto;">
+        <!-- Basic Plan -->
+        <div class="card pricing-card card-lift" style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 1.75rem; padding: 2.5rem 2rem; background-color: var(--bg-secondary);">
+          <div class="price-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 1.25rem;">
+            <h4 style="font-size: 1.15rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-weight:700;">Basic Free</h4>
+            <div class="price-val" style="font-size: 3rem; font-weight: 800; color: #fff; margin-top: 0.5rem;">$0</div>
+            <p style="color: var(--text-secondary); font-size:0.85rem; margin-top:0.25rem;">Free Forever</p>
+          </div>
+          <ul class="price-features" style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; padding-left: 0;">
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> Basic workout tracking</li>
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> Standard exercise library</li>
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> Water and food logs</li>
+            <li class="disabled" style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem; color:var(--text-muted); text-decoration:line-through;"><i data-lucide="x" style="width:16px; height:16px;"></i> Unlimited video platform</li>
+            <li class="disabled" style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem; color:var(--text-muted); text-decoration:line-through;"><i data-lucide="x" style="width:16px; height:16px;"></i> Contextual AI Coach</li>
+          </ul>
+          <button class="btn btn-secondary btn-magnetic" style="width: 100%; margin-top: auto;" onclick="openAuthModal('signup')">Get Started</button>
+        </div>
+
+        <!-- Premium Plan (Featured) -->
+        <div class="card pricing-card featured-pricing-card card-lift" style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 1.75rem; padding: 2.5rem 2rem; background-color: var(--bg-secondary); border-color: var(--neon-lime); box-shadow: 0 15px 40px rgba(41, 128, 255, 0.15); transform: scale(1.03); position:relative;">
+          <div class="featured-badge" style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background-color: var(--neon-lime); color: #fff; font-size: 0.7rem; font-weight: 800; padding: 0.25rem 0.85rem; border-radius: 50px; letter-spacing: 0.08em;">MOST POPULAR</div>
+          <div class="price-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 1.25rem;">
+            <h4 style="font-size: 1.15rem; color: var(--neon-lime); text-transform: uppercase; letter-spacing: 0.05em; font-weight:800;">Premium Pro</h4>
+            <div class="price-val" style="font-size: 3rem; font-weight: 800; color: #fff; margin-top: 0.5rem;">$9.99<span style="font-size:1rem; font-weight:500;">/mo</span></div>
+            <p style="color: var(--neon-cyan); font-size:0.85rem; margin-top:0.25rem;">Unlimited Access</p>
+          </div>
+          <ul class="price-features" style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; padding-left: 0;">
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> Unlimited custom workouts</li>
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> HD video demonstration platform</li>
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> Chart.js progress tracking</li>
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> Contextual AI Coach chat access</li>
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> Custom routine program builder</li>
+          </ul>
+          <button class="btn btn-primary btn-magnetic pulse-glow" style="width: 100%; margin-top: auto;" onclick="openAuthModal('signup')">Upgrade to Pro</button>
+        </div>
+
+        <!-- Elite Plan -->
+        <div class="card pricing-card card-lift" style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 1.75rem; padding: 2.5rem 2rem; background-color: var(--bg-secondary);">
+          <div class="price-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 1.25rem;">
+            <h4 style="font-size: 1.15rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-weight:700;">Elite Tier</h4>
+            <div class="price-val" style="font-size: 3rem; font-weight: 800; color: #fff; margin-top: 0.5rem;">$29.99<span style="font-size:1rem; font-weight:500;">/mo</span></div>
+            <p style="color: var(--text-secondary); font-size:0.85rem; margin-top:0.25rem;">Ultimate Coaching</p>
+          </div>
+          <ul class="price-features" style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; padding-left: 0;">
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> All Premium Pro features</li>
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> 1-on-1 monthly video coaching calls</li>
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> Dedicated AI coach priorities</li>
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> Early access beta features</li>
+            <li style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><i data-lucide="check" style="width:16px; height:16px; color:var(--neon-cyan)"></i> Custom tailored meal plans</li>
+          </ul>
+          <button class="btn btn-secondary btn-magnetic" style="width: 100%; margin-top: auto;" onclick="openAuthModal('signup')">Go Elite</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="landing-section reveal" style="padding-top: 4rem; padding-bottom: 4rem; overflow:hidden;">
+      <div class="section-header">
+        <span class="section-tag" style="color:var(--neon-cyan)">TESTIMONIALS</span>
+        <h2 class="section-title">Athlete Success Stories</h2>
+        <p class="section-subtitle">Read how elite athletes and trainers are transforming their fitness tracking routines with Fitmonks AI.</p>
+      </div>
+      
+      <div class="testimonials-carousel" style="display: flex; gap: 1.5rem; overflow-x: auto; padding: 1rem 0.5rem 2rem; scrollbar-width: none;">
+        <!-- Testimonial 1 -->
+        <div class="card card-lift" style="min-width: 320px; max-width: 380px; flex-shrink: 0; display:flex; flex-direction:column; gap:1.25rem;">
+          <div style="display:flex; gap:0.25rem; color:var(--neon-orange);">
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+          </div>
+          <p style="font-size:0.95rem; line-height:1.5; font-style:italic; color:var(--text-primary);">
+            "The workout logging is lightning fast. I can log my sets and track rest timers without breaking my momentum in the gym. Best tracker ever."
+          </p>
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-top:auto;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-lime), var(--neon-cyan)); display:flex; align-items:center; justify-content:center; color:#000; font-weight:800;">MC</div>
+            <div>
+              <h4 style="font-size:0.9rem; font-weight:700;">Marcus Chen</h4>
+              <span style="font-size:0.75rem; color:var(--text-secondary);">Powerlifter</span>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="card card-lift" style="min-width: 320px; max-width: 380px; flex-shrink: 0; display:flex; flex-direction:column; gap:1.25rem; border-color: rgba(57,255,20,0.2);">
+          <div style="display:flex; gap:0.25rem; color:var(--neon-orange);">
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+          </div>
+          <p style="font-size:0.95rem; line-height:1.5; font-style:italic; color:var(--text-primary);">
+            "Having an AI Coach synced to my weight trends is a game changer. I ask it to adjust my daily macros and it splits them instantly. Incredible design!"
+          </p>
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-top:auto;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-cyan), var(--neon-orange)); display:flex; align-items:center; justify-content:center; color:#000; font-weight:800;">SB</div>
+            <div>
+              <h4 style="font-size:0.9rem; font-weight:700;">Sarah Jenkins</h4>
+              <span style="font-size:0.75rem; color:var(--text-secondary);">Fitness Influencer</span>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="card card-lift" style="min-width: 320px; max-width: 380px; flex-shrink: 0; display:flex; flex-direction:column; gap:1.25rem;">
+          <div style="display:flex; gap:0.25rem; color:var(--neon-orange);">
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+            <i data-lucide="star" style="fill:currentColor; width:16px; height:16px;"></i>
+          </div>
+          <p style="font-size:0.95rem; line-height:1.5; font-style:italic; color:var(--text-primary);">
+            "The library videos are perfect. Every exercise has form instructions and joint safety alerts. Highly recommend it to all clients."
+          </p>
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-top:auto;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-orange), var(--neon-lime)); display:flex; align-items:center; justify-content:center; color:#000; font-weight:800;">DR</div>
+            <div>
+              <h4 style="font-size:0.9rem; font-weight:700;">David Ross</h4>
+              <span style="font-size:0.75rem; color:var(--text-secondary);">Personal Trainer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="landing-section reveal" style="padding-top: 4rem; padding-bottom: 4rem;">
+      <div class="section-header">
+        <span class="section-tag" style="color:var(--neon-cyan)">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Got questions? We've got answers to help you get the most out of Fitmonks AI.</p>
+      </div>
+      
+      <div style="max-width: 800px; margin: 0 auto; display:flex; flex-direction:column; gap:1rem;">
+        <!-- FAQ Item 1 -->
+        <div class="card faq-item" style="padding: 1.25rem 1.5rem; cursor:pointer;" onclick="toggleFaqAccordion(this)">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="font-size: 1.05rem; font-weight: 700;">How does the AI Fitness Coach customize my routines?</h3>
+            <i data-lucide="chevron-down" style="width:18px; height:18px; transition:transform 0.3s;"></i>
+          </div>
+          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.3s ease-out; margin-top:0;">
+            <p style="padding-top:0.75rem; font-size:0.9rem; line-height:1.5; color:var(--text-secondary);">
+              Our context-aware AI engine reads your height, current weight, activity tier, and past logged sessions to suggest recovery options or scale daily macros automatically.
+            </p>
+          </div>
+        </div>
+        <!-- FAQ Item 2 -->
+        <div class="card faq-item" style="padding: 1.25rem 1.5rem; cursor:pointer;" onclick="toggleFaqAccordion(this)">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="font-size: 1.05rem; font-weight: 700;">Can I track sets in pounds instead of kilograms?</h3>
+            <i data-lucide="chevron-down" style="width:18px; height:18px; transition:transform 0.3s;"></i>
+          </div>
+          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.3s ease-out; margin-top:0;">
+            <p style="padding-top:0.75rem; font-size:0.9rem; line-height:1.5; color:var(--text-secondary);">
+              Yes! Under the Profile/Settings panel, you can adjust units, target calories, age metrics, and water levels to fit your active system parameters.
+            </p>
+          </div>
+        </div>
+        <!-- FAQ Item 3 -->
+        <div class="card faq-item" style="padding: 1.25rem 1.5rem; cursor:pointer;" onclick="toggleFaqAccordion(this)">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="font-size: 1.05rem; font-weight: 700;">Is there an offline mode for workout logging?</h3>
+            <i data-lucide="chevron-down" style="width:18px; height:18px; transition:transform 0.3s;"></i>
+          </div>
+          <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.3s ease-out; margin-top:0;">
+            <p style="padding-top:0.75rem; font-size:0.9rem; line-height:1.5; color:var(--text-secondary);">
+              Yes! All workout sets and weights are cached inside local state storage instantly. Your data is persisted, allowing offline tracking anywhere.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="landing-section reveal" style="margin-top: 4rem; margin-bottom: 4rem;">
+      <div style="background: linear-gradient(135deg, rgba(41, 128, 255, 0.15), rgba(57, 255, 20, 0.05)); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-lg); padding: 4rem 2rem; text-align: center; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-50px; left:-50px; width:200px; height:200px; background:var(--neon-lime); filter:blur(100px); opacity:0.1; pointer-events:none;"></div>
+        <div style="position:absolute; bottom:-50px; right:-50px; width:200px; height:200px; background:var(--neon-cyan); filter:blur(100px); opacity:0.1; pointer-events:none;"></div>
+        
+        <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 1rem; font-family:'Sora',sans-serif;">Start Building Your Strongest Self Today</h2>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.6;">
+          Join thousands of athletes improving their consistency and performance every day with Fitmonks AI.
+        </p>
+        <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+          <button class="btn btn-primary btn-hero btn-magnetic pulse-glow" onclick="openAuthModal('signup')">Get Started Free</button>
+          <button class="btn btn-secondary btn-hero btn-magnetic" onclick="openAuthModal('signin')">Book a Demo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="landing-footer reveal">
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 3rem; margin-bottom: 3rem; flex-wrap: wrap;">
+        <!-- Col 1: Brand -->
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div class="landing-logo">
+            <div class="logo-icon"><i data-lucide="dumbbell"></i></div>
+            <span class="logo-text">Fitmonks AI</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5; max-width:240px;">
+            Sleek workout trackers, metrics dashboards, and AI coaches designed to build elite athletic progress.
+          </p>
+          <div style="display:flex; gap:1rem; color:var(--text-muted); margin-top:0.5rem;">
+            <a href="#" style="color:inherit; text-decoration:none;"><i data-lucide="twitter" style="width:18px; height:18px;"></i></a>
+            <a href="#" style="color:inherit; text-decoration:none;"><i data-lucide="instagram" style="width:18px; height:18px;"></i></a>
+            <a href="#" style="color:inherit; text-decoration:none;"><i data-lucide="github" style="width:18px; height:18px;"></i></a>
+          </div>
+        </div>
+        <!-- Col 2: Navigation Links -->
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <h4 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:#fff; font-weight:700;">Platform</h4>
+          <a href="#features-section" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Features</a>
+          <a href="#workouts-section" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Workouts</a>
+          <a href="#progress-section" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Progress</a>
+          <a href="#pricing-section" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Pricing</a>
+        </div>
+        <!-- Col 3: Resources -->
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <h4 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:#fff; font-weight:700;">Resources</h4>
+          <a href="#" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Guides</a>
+          <a href="#" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Form FAQs</a>
+          <a href="#" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Community</a>
+          <a href="#" style="font-size:0.85rem; color:var(--text-secondary); text-decoration:none;">Status</a>
+        </div>
+        <!-- Col 4: Newsletter -->
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <h4 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:#fff; font-weight:700;">Newsletter</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">Get YC-style weekly updates on routines and macro adjustments.</p>
+          <form style="display:flex; gap:0.5rem;" onsubmit="event.preventDefault(); alert('Subscribed to newsletter!'); this.reset();">
+            <input type="email" placeholder="Enter email..." required style="flex:1; background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--border-radius-md); padding: 0.5rem 0.75rem; color: #fff; font-size:0.85rem; outline:none;">
+            <button type="submit" class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.85rem;">Join</button>
+          </form>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; border-top: 1px solid var(--border-color); padding-top:1.5rem; flex-wrap:wrap; gap:1rem;">
+        <span style="font-size:0.8rem; color:var(--text-muted);">© 2026 Fitmonks AI Inc. All rights reserved.</span>
+        <span style="font-size:0.8rem; color:var(--text-muted);"><a href="#" style="color:inherit; text-decoration:none; margin-right:1rem;">Terms</a> <a href="#" style="color:inherit; text-decoration:none;">Privacy</a></span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ============================================== -->
+  <!-- B. MAIN APP WORKSPACE (Visible when logged in) -->
+  <!-- ============================================== -->
+  <div id="app-container" style="display: none;">
+    
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <i data-lucide="dumbbell" style="stroke-width: 2.5px;"></i>
+        </div>
+        <span class="logo-text">Fitmonks AI</span>
+      </div>
+      
+      <ul class="nav-links">
+        <li class="nav-item active" data-tab="dashboard">
+          <a href="#dashboard" onclick="switchTab('dashboard')">
+            <i data-lucide="layout-dashboard" class="nav-icon"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="tracker">
+          <a href="#tracker" onclick="switchTab('tracker')">
+            <i data-lucide="clipboard-list" class="nav-icon"></i>
+            <span>Workout Log</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="exercises">
+          <a href="#exercises" onclick="switchTab('exercises')">
+            <i data-lucide="book-open" class="nav-icon"></i>
+            <span>Library</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="videos">
+          <a href="#videos" onclick="switchTab('videos')">
+            <i data-lucide="video" class="nav-icon"></i>
+            <span>Videos</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="programs">
+          <a href="#programs" onclick="switchTab('programs')">
+            <i data-lucide="calendar" class="nav-icon"></i>
+            <span>Programs</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="progress">
+          <a href="#progress" onclick="switchTab('progress')">
+            <i data-lucide="trending-up" class="nav-icon"></i>
+            <span>Analytics</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="nutrition">
+          <a href="#nutrition" onclick="switchTab('nutrition')">
+            <i data-lucide="apple" class="nav-icon"></i>
+            <span>Nutrition</span>
+          </a>
+        </li>
+        <li class="nav-item" data-tab="coach">
+          <a href="#coach" onclick="switchTab('coach')">
+            <i data-lucide="sparkles" class="nav-icon"></i>
+            <span>AI Coach</span>
+          </a>
+        </li>
+      </ul>
+      
+      <div class="sidebar-profile" onclick="switchTab('profile')" style="position:relative;">
+        <div class="profile-avatar" id="avatar-letter">U</div>
+        <div class="profile-info">
+          <span class="profile-name" id="user-display-name">Guest User</span>
+          <span class="profile-role">Premium Member</span>
+        </div>
+        <!-- Logout action overlay trigger -->
+        <button onclick="logoutUser(event)" title="Log Out" style="position:absolute; right:10px; background:none; border:none; color:var(--text-muted); cursor:pointer; display:flex; align-items:center;">
+          <i data-lucide="log-out" style="width:16px; height:16px;"></i>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Main Content Container -->
+    <main class="main-content">
+      
+      <!-- 1. DASHBOARD VIEW -->
+      <div id="view-dashboard" class="tab-view active">
+        <div class="view-header">
+          <div class="view-title-container">
+            <h1 class="view-title" id="welcome-text">Welcome back, User</h1>
+            <span class="view-subtitle">Let's dominate today's fitness goals!</span>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary pulse-glow" onclick="startNewEmptyWorkout()">
+              <i data-lucide="plus"></i> Start Workout
+            </button>
+          </div>
+        </div>
+        
+        <div class="dashboard-grid">
+          <!-- Widget 1: Calories & Macro Summary -->
+          <div class="card">
+            <h3 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i data-lucide="flame" style="color: var(--neon-orange);"></i> Nutrition Rings
+            </h3>
+            <div class="progress-ring-container">
+              <svg width="140" height="140">
+                <circle cx="70" cy="70" r="60" stroke="rgba(255,255,255,0.04)" stroke-width="8" fill="transparent"/>
+                <circle id="calorie-progress-circle" class="progress-ring-circle" cx="70" cy="70" r="60" 
+                        stroke="var(--neon-lime)" stroke-width="8" fill="transparent" 
+                        stroke-dasharray="377" stroke-dashoffset="377"/>
+              </svg>
+              <div class="progress-ring-text">
+                <span class="progress-ring-val" id="dash-calories-val">0</span>
+                <span class="progress-ring-lbl">/ <span id="dash-calories-target">2000</span> kcal</span>
+              </div>
+            </div>
+            <div class="macro-capsules-container" style="margin-top: 1rem; gap: 0.5rem;">
+              <div style="display: flex; justify-content: space-around; font-size: 0.75rem; text-align: center;">
+                <div><strong style="color:var(--neon-lime)">Protein</strong><div id="dash-protein-val">0 / 150g</div></div>
+                <div><strong style="color:var(--neon-cyan)">Carbs</strong><div id="dash-carbs-val">0 / 200g</div></div>
+                <div><strong style="color:var(--neon-orange)">Fats</strong><div id="dash-fats-val">0 / 65g</div></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Widget 2: Today's Workout -->
+          <div class="card dash-card-wide" id="dash-workout-card">
+            <h3 style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between;">
+              <span><i data-lucide="calendar-check" style="color: var(--neon-lime);"></i> Today's Schedule</span>
+              <span id="dash-day-name" style="font-size: 0.85rem; color: var(--text-secondary);">Tuesday</span>
+            </h3>
+            <div id="dash-active-workout-section" style="display: none;">
+              <div style="background-color: rgba(204,255,0,0.03); border: 1px dashed rgba(204,255,0,0.2); border-radius: var(--border-radius-md); padding: 1.25rem; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.25rem;">Active Workout in Progress!</h4>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary);" id="dash-active-workout-duration">Duration: 00:00</p>
+                </div>
+                <button class="btn btn-primary" onclick="switchTab('tracker')">Resume Session</button>
+              </div>
+            </div>
+            <div id="dash-no-active-workout-section">
+              <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <p style="font-size: 0.95rem; color: var(--text-secondary);" id="dash-recommended-routine-text">
+                  You have no active workout. Start a recommended program routine below, or log an empty custom workout.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;" id="dash-program-recommendation-container">
+                  <!-- Loaded dynamically from app.js -->
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Widget 3: Fitness Streaks & Milestones -->
+          <div class="card stat-card">
+            <div class="stat-icon-container stat-icon-orange">
+              <i data-lucide="zap"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-value" id="dash-streak-val">0 Days</span>
+              <span class="stat-label">Active Workout Streak</span>
+            </div>
+          </div>
+          
+          <!-- Widget 4: Hydration Tracker -->
+          <div class="card stat-card">
+            <div class="stat-icon-container stat-icon-cyan">
+              <i data-lucide="droplet"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-value" id="dash-water-val">0 / 8 cups</span>
+              <span class="stat-label">Hydration Progress</span>
+            </div>
+          </div>
+          
+          <!-- Widget 5: Workout Logs Count -->
+          <div class="card stat-card">
+            <div class="stat-icon-container stat-icon-lime">
+              <i data-lucide="trophy"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-value" id="dash-total-workouts-val">0 Completed</span>
+              <span class="stat-label">Total Workouts Logged</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Dashboard Goal Progress -->
+        <div class="card" style="margin-bottom: 2rem;">
+          <h3 style="margin-bottom: 1.25rem;"><i data-lucide="target" style="color: var(--neon-cyan);"></i> Active Fitness Goals</h3>
+          <div class="goals-list" id="dash-goals-container">
+            <!-- Goals loaded dynamically -->
+          </div>
+        </div>
+        
+        <!-- Recommended Videos Carousel Section -->
+        <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="play-circle" style="color: var(--neon-lime);"></i> Recommended Exercise Tutorials
+        </h3>
+        <div class="video-grid" id="dash-recommended-videos" style="margin-bottom: 2rem;">
+          <!-- Loaded dynamically -->
+        </div>
+      </div>
+      
+      <!-- 2. WORKOUT TRACKER VIEW -->
+      <div id="view-tracker" class="tab-view">
+        <div class="view-header">
+          <div class="view-title-container">
+            <h1 class="view-title">Workout Tracker</h1>
+            <span class="view-subtitle">Log sets, weights, and repetitions in real-time</span>
+          </div>
+        </div>
+        
+        <!-- INACTIVE WORKOUT STATE -->
+        <div id="tracker-inactive-state">
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: start;">
+            
+            <div class="card" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 3rem 2rem; gap: 1.5rem;">
+              <div style="width: 80px; height: 80px; border-radius: 50%; background-color: rgba(204,255,0,0.05); border: 2px dashed var(--neon-lime); display: flex; align-items: center; justify-content: center; color: var(--neon-lime);">
+                <i data-lucide="play" style="width: 36px; height: 36px; margin-left: 4px;"></i>
+              </div>
+              <div>
+                <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Ready to crush your workout?</h2>
+                <p style="color: var(--text-secondary); max-width: 450px; font-size: 0.95rem;">
+                  Start a blank workout to log custom exercises on the fly, or select one of your scheduled training programs.
+                </p>
+              </div>
+              <div style="display: flex; gap: 1rem; width: 100%; justify-content: center;">
+                <button class="btn btn-primary" onclick="startNewEmptyWorkout()" style="padding: 0.85rem 2rem;">
+                  Start Empty Workout
+                </button>
+              </div>
+            </div>
+            
+            <div class="active-workout-sidebar">
+              <!-- Workout History mini log -->
+              <div class="card" style="width: 100%;">
+                <h3 style="margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <i data-lucide="history" style="color: var(--text-secondary);"></i> Recent History
+                </h3>
+                <div id="tracker-recent-history-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <!-- Dynamically generated logs -->
+                  <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; padding: 1rem 0;">No workouts logged yet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ACTIVE WORKOUT STATE -->
+        <div id="tracker-active-state" style="display: none;">
+          <div class="workout-tracker-layout">
+            
+            <!-- Active Workout Routine Area -->
+            <div class="card">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.25rem;">
+                <div>
+                  <input type="text" id="active-workout-name" value="Custom Workout" 
+                         style="background: transparent; border: none; font-size: 1.5rem; font-weight: 800; color: #fff; border-bottom: 2px solid transparent; outline: none; width: 250px;" 
+                         onfocus="this.style.borderBottomColor='var(--neon-lime)'" 
+                         onblur="this.style.borderBottomColor='transparent'">
+                  <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem;">
+                    <span id="active-workout-program-tag" style="background: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Custom Routine</span>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 0.75rem;">
+                  <button class="btn btn-secondary btn-icon" title="Add Exercise" onclick="openWorkoutExercisePicker()">
+                    <i data-lucide="plus-circle" style="color: var(--neon-lime)"></i> Add Exercise
+                  </button>
+                </div>
+              </div>
+              
+              <div id="active-workout-exercises-container">
+                <!-- Exercise blocks dynamically appended here -->
+              </div>
+              
+              <!-- Empty workout state -->
+              <div id="active-workout-empty-state" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 0; gap: 1rem;">
+                <i data-lucide="dumbbell" style="width: 48px; height: 48px; color: var(--text-muted);"></i>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">No exercises added to this workout yet.</p>
+                <button class="btn btn-secondary" onclick="openWorkoutExercisePicker()">
+                  Choose an Exercise
+                </button>
+              </div>
+            </div>
+            
+            <!-- Active Workout Sidebar -->
+            <div class="active-workout-sidebar">
+              <!-- Workout Timer & Stats -->
+              <div class="timer-box">
+                <span class="timer-val" id="active-workout-clock">00:00</span>
+                <span class="timer-lbl">Duration</span>
+              </div>
+              
+              <!-- Active Workout Action Controls -->
+              <div class="card" style="width: 100%;">
+                <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Session Control</h3>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%;">
+                  <button class="btn btn-primary" style="width: 100%; padding: 0.85rem;" onclick="finishWorkout()">
+                    <i data-lucide="check-circle2"></i> Complete Workout
+                  </button>
+                  <button class="btn btn-secondary" style="width: 100%;" onclick="openWorkoutExercisePicker()">
+                    <i data-lucide="plus"></i> Add Exercise
+                  </button>
+                  <button class="btn btn-danger" style="width: 100%;" onclick="cancelWorkout()">
+                    Cancel Workout
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Active Workout Set Stats -->
+              <div class="card" style="width: 100%;">
+                <h3 style="margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <i data-lucide="info" style="color: var(--neon-cyan);"></i> Session Volume
+                </h3>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-secondary)">Total Exercises:</span>
+                    <strong id="active-stats-exercises">0</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-secondary)">Total Sets:</span>
+                    <strong id="active-stats-sets">0</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-secondary)">Total Volume:</span>
+                    <strong id="active-stats-volume">0 kg</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+      <!-- 3. EXERCISE LIBRARY VIEW -->
+      <div id="view-exercises" class="tab-view">
+        <div class="view-header">
+          <div class="view-title-container">
+            <h1 class="view-title">Exercise Library</h1>
+            <span class="view-subtitle">Search instructions, safety protocols, and video tutorials</span>
+          </div>
+        </div>
+        
+        <!-- Search & Filters -->
+        <div class="search-filter-bar">
+          <div class="search-input-wrapper">
+            <i data-lucide="search" class="search-input-icon"></i>
+            <input type="text" id="exercise-search" class="search-input" placeholder="Search exercises (e.g. Bench press)..." oninput="filterExerciseLibrary()">
+          </div>
+          <select id="exercise-filter-muscle" class="filter-select" onchange="filterExerciseLibrary()">
+            <option value="">All Muscle Groups</option>
+            <option value="Chest">Chest</option>
+            <option value="Back">Back</option>
+            <option value="Shoulders">Shoulders</option>
+            <option value="Arms">Arms</option>
+            <option value="Legs">Legs</option>
+            <option value="Core">Core</option>
+            <option value="Cardio">Cardio</option>
+          </select>
+          <select id="exercise-filter-equipment" class="filter-select" onchange="filterExerciseLibrary()">
+            <option value="">All Equipment</option>
+            <option value="Barbell">Barbell</option>
+            <option value="Dumbbell">Dumbbell</option>
+            <option value="Bodyweight">Bodyweight</option>
+            <option value="Cable">Cable Machine</option>
+            <option value="Machine">Machine</option>
+          </select>
+        </div>
+        
+        <!-- Exercises Grid Container -->
+        <div class="exercises-grid" id="exercises-grid-container">
+          <!-- Populated dynamically from exercises.js/app.js -->
+        </div>
+      </div>
+      
+      <!-- 4. EXERCISE VIDEO VIEW -->
+      <div id="view-videos" class="tab-view">
+        <div class="view-header">
+          <div class="view-title-container">
+            <h1 class="view-title">Exercise Video Platform</h1>
+            <span class="view-subtitle">Watch high-definition instructional video loops by categories</span>
+          </div>
+        </div>
+        
+        <!-- Video Categories Tabs -->
+        <div class="video-categories">
+          <div class="category-tab active" data-category="All" onclick="filterVideoCategory('All')">All Videos</div>
+          <div class="category-tab" data-category="Strength" onclick="filterVideoCategory('Strength')">Strength Training</div>
+          <div class="category-tab" data-category="Chest" onclick="filterVideoCategory('Chest')">Chest</div>
+          <div class="category-tab" data-category="Back" onclick="filterVideoCategory('Back')">Back</div>
+          <div class="category-tab" data-category="Shoulders" onclick="filterVideoCategory('Shoulders')">Shoulders</div>
+          <div class="category-tab" data-category="Arms" onclick="filterVideoCategory('Arms')">Arms</div>
+          <div class="category-tab" data-category="Legs" onclick="filterVideoCategory('Legs')">Legs</div>
+          <div class="category-tab" data-category="Core" onclick="filterVideoCategory('Core')">Core & Abs</div>
+          <div class="category-tab" data-category="Cardio" onclick="filterVideoCategory('Cardio')">Cardio</div>
+          <div class="category-tab" data-category="Saved" onclick="filterVideoCategory('Saved')">💖 Saved ({0})</div>
+        </div>
+        
+        <!-- Videos Grid -->
+        <div class="video-grid" id="video-grid-container">
+          <!-- Dynamically populated from JS -->
+        </div>
+      </div>
+      
+      <!-- 5. WORKOUT PROGRAMS VIEW -->
+      <div id="view-programs" class="tab-view">
+        <div class="view-header">
+          <div class="view-title-container">
+            <h1 class="view-title">Workout Programs</h1>
+            <span class="view-subtitle">Select ready-made schedules or build custom fitness tracks</span>
+          </div>
+        </div>
+        
+        <!-- Tab selector inside view -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+          <button class="btn btn-secondary btn-primary" id="btn-prog-ready" onclick="switchProgramTab('ready')">Ready-Made Programs</button>
+          <button class="btn btn-secondary" id="btn-prog-custom" onclick="switchProgramTab('custom')">Create Custom Program</button>
+        </div>
+        
+        <!-- Ready Made Programs Container -->
+        <div id="programs-ready-tab" class="programs-grid">
+          <!-- Populated dynamically -->
+        </div>
+        
+        <!-- Custom Program Builder Container -->
+        <div id="programs-custom-tab" style="display: none; max-width: 650px;" class="card">
+          <h2 style="margin-bottom: 1.5rem;"><i data-lucide="sliders" style="color: var(--neon-lime);"></i> Custom Program Builder</h2>
+          <form id="custom-program-form" class="custom-program-form" onsubmit="saveCustomProgram(event)">
+            <div class="form-group">
+              <label for="prog-name">Program Name</label>
+              <input type="text" id="prog-name" placeholder="e.g. My Push Pull Legs" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="prog-description">Description</label>
+              <textarea id="prog-description" rows="3" placeholder="What is the focus of this program?"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="prog-days">Training Days Per Week</label>
+              <select id="prog-days">
+                <option value="3">3 Days / Week</option>
+                <option value="4">4 Days / Week</option>
+                <option value="5">5 Days / Week</option>
+                <option value="6">6 Days / Week</option>
+              </select>
+            </div>
+            
+            <!-- Adding exercises to the custom program -->
+            <div class="form-group">
+              <label>Exercises in Program</label>
+              <div id="custom-prog-exercises-list" style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.75rem;">
+                <!-- rows of select dropdowns added here -->
+              </div>
+              <button type="button" class="btn btn-secondary" style="width: fit-content; font-size: 0.8rem;" onclick="addExerciseToCustomProgramBuilder()">
+                <i data-lucide="plus"></i> Add Exercise Row
+              </button>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+              <button type="submit" class="btn btn-primary" style="flex: 1;">Save Program</button>
+              <button type="button" class="btn btn-secondary" onclick="switchProgramTab('ready')">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <!-- 6. PROGRESS / ANALYTICS VIEW -->
+      <div id="view-progress" class="tab-view">
+        <div class="view-header">
+          <div class="view-title-container">
+            <h1 class="view-title">Progress Analytics</h1>
+            <span class="view-subtitle">Track body weights, training volumes, and milestones over time</span>
+          </div>
+        </div>
+        
+        <div class="analytics-layout">
+          <!-- Charts and logs -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Weight Trend Chart -->
+            <div class="card">
+              <h3><i data-lucide="activity" style="color: var(--neon-lime);"></i> Body Weight Trend</h3>
+              <div class="chart-container">
+                <canvas id="weightChart"></canvas>
+              </div>
+            </div>
+            
+            <!-- Workout Volume Chart -->
+            <div class="card">
+              <h3><i data-lucide="bar-chart-3" style="color: var(--neon-cyan);"></i> Weekly Training Volume</h3>
+              <div class="chart-container">
+                <canvas id="volumeChart"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Logging Weight Sidebar -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Record Weight Card -->
+            <div class="card">
+              <h3>Log Body Weight</h3>
+              <form onsubmit="logNewWeight(event)" class="log-weight-form">
+                <input type="number" step="0.1" id="log-weight-val" placeholder="Weight (kg)" required 
+                       style="flex: 1; background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--border-radius-md); padding: 0.75rem; color: #fff; outline: none;">
+                <button type="submit" class="btn btn-primary btn-icon" title="Log Weight">
+                  <i data-lucide="plus"></i>
+                </button>
+              </form>
+            </div>
+            
+            <!-- Weight History List -->
+            <div class="card">
+              <h3>Weight History</h3>
+              <div class="weight-logs-history" id="weight-history-rows-container">
+                <!-- Dynamically generated logs -->
+              </div>
+            </div>
+            
+            <!-- BMI Widget -->
+            <div class="card" style="text-align: center;">
+              <h3 style="margin-bottom: 0.75rem;">BMI Calculator</h3>
+              <div style="font-size: 2.25rem; font-weight: 800; color: var(--neon-lime);" id="bmi-display-val">22.4</div>
+              <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;" id="bmi-display-status">Normal Weight</div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Calculated automatically based on your height and logged weight.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 7. NUTRITION TRACKER VIEW -->
+      <div id="view-nutrition" class="tab-view">
+        <div class="view-header">
+          <div class="view-title-container">
+            <h1 class="view-title">Nutrition Tracking</h1>
+            <span class="view-subtitle">Monitor calories, water, and macronutrient thresholds</span>
+          </div>
+        </div>
+        
+        <div class="nutrition-grid" style="margin-bottom: 2rem;">
+          
+          <!-- Calorie Target Rings -->
+          <div class="card nutrition-card-main">
+            <h3>Daily Calorie Target</h3>
+            <div class="progress-ring-container" style="width: 160px; height: 160px; margin: 1.5rem auto;">
+              <svg width="160" height="160">
+                <circle cx="80" cy="80" r="70" stroke="rgba(255,255,255,0.04)" stroke-width="10" fill="transparent"/>
+                <circle id="nutrition-calorie-circle" class="progress-ring-circle" cx="80" cy="80" r="70" 
+                        stroke="var(--neon-lime)" stroke-width="10" fill="transparent" 
+                        stroke-dasharray="440" stroke-dashoffset="440"/>
+              </svg>
+              <div class="progress-ring-text">
+                <span class="progress-ring-val" style="font-size: 1.75rem;" id="nutri-cals-logged">0</span>
+                <span class="progress-ring-lbl">/ <span id="nutri-cals-target">2000</span> kcal</span>
+              </div>
+            </div>
+            <div style="text-align: center; color: var(--text-secondary); font-size: 0.85rem;" id="nutri-status-text">
+              0 calories logged today. Keep going!
+            </div>
+          </div>
+          
+          <!-- Macros Capsule Progress Bars -->
+          <div class="card nutrition-card-main">
+            <h3>Macronutrient Progress</h3>
+            <div class="macro-capsules-container" style="margin-top: 1.5rem; gap: 1.25rem;">
+              
+              <!-- Protein -->
+              <div class="macro-capsule">
+                <div class="macro-header">
+                  <span>Protein</span>
+                  <span id="nutri-prot-vals">0g / 150g</span>
+                </div>
+                <div class="macro-bar-outer">
+                  <div id="bar-protein" class="macro-bar-inner macro-protein" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <!-- Carbs -->
+              <div class="macro-capsule">
+                <div class="macro-header">
+                  <span>Carbohydrates</span>
+                  <span id="nutri-carb-vals">0g / 200g</span>
+                </div>
+                <div class="macro-bar-outer">
+                  <div id="bar-carbs" class="macro-bar-inner macro-carbs" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <!-- Fats -->
+              <div class="macro-capsule">
+                <div class="macro-header">
+                  <span>Fats</span>
+                  <span id="nutri-fat-vals">0g / 65g</span>
+                </div>
+                <div class="macro-bar-outer">
+                  <div id="bar-fats" class="macro-bar-inner macro-fats" style="width: 0%"></div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; margin-bottom: 2rem;">
+          
+          <!-- Food Logger Form & Logs -->
+          <div class="card">
+            <h3 style="margin-bottom: 1rem;">Log Food Item</h3>
+            <form onsubmit="logNewFood(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+              <div class="form-group">
+                <label for="food-name">Food Name</label>
+                <input type="text" id="food-name" placeholder="e.g. Grilled Chicken Breast (150g)" required>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+                <div class="form-group">
+                  <label for="food-cals">Calories</label>
+                  <input type="number" id="food-cals" placeholder="kcal" required>
+                </div>
+                <div class="form-group">
+                  <label for="food-prot">Protein (g)</label>
+                  <input type="number" id="food-prot" placeholder="g">
+                </div>
+                <div class="form-group">
+                  <label for="food-carbs">Carbs (g)</label>
+                  <input type="number" id="food-carbs" placeholder="g">
+                </div>
+                <div class="form-group">
+                  <label for="food-fats">Fats (g)</label>
+                  <input type="number" id="food-fats" placeholder="g">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Log Food</button>
+            </form>
+            
+            <h3 style="margin-top: 2rem; margin-bottom: 0.5rem;">Food History (Today)</h3>
+            <div class="food-history-list" id="food-logs-container">
+              <!-- Food items populated dynamically -->
+              <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; padding: 1.5rem 0;">No foods logged today.</p>
+            </div>
+          </div>
+          
+          <!-- Hydration Tracker Card -->
+          <div class="card">
+            <h3>Water Intake Tracker</h3>
+            <div style="margin: 1.5rem 0; text-align: center;">
+              <div style="font-size: 3rem; font-weight: 800; color: var(--neon-cyan);" id="nutri-water-display">0 ml</div>
+              <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">Daily Target: <span id="nutri-water-target">2000</span> ml</div>
+            </div>
+            
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Tap a cup to log 250ml of water:</p>
+            <div class="water-grid" id="water-cups-grid">
+              <!-- 8 cups populated dynamically -->
+            </div>
+            
+            <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+              <button class="btn btn-secondary" style="flex: 1;" onclick="addWaterMl(250)">
+                + 250 ml
+              </button>
+              <button class="btn btn-secondary" style="flex: 1;" onclick="addWaterMl(500)">
+                + 500 ml
+              </button>
+              <button class="btn btn-danger btn-icon" title="Reset Water Logs" onclick="resetWaterIntake()">
+                <i data-lucide="refresh-cw"></i>
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- 8. AI FITNESS COACH VIEW -->
+      <div id="view-coach" class="tab-view">
+        <div class="ai-coach-layout">
+          
+          <!-- Chat box -->
+          <div class="card ai-chat-card">
+            <h3 style="padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.5rem;">
+              <i data-lucide="sparkles" style="color: var(--neon-lime);"></i> AI Coach Chatbot
+            </h3>
+            
+            <div class="chat-history" id="chat-history-container" style="padding-top: 1rem;">
+              <!-- Seed chatbot introduction messages -->
+              <div class="chat-message ai">
+                Hello! I am your <strong>Fitmonks AI Coach</strong>. I have analyzed your profile, workout logs, and goals. 
+                <br><br>
+                How can I help you today? Try clicking one of the quick suggestions below, or ask me anything!
+              </div>
+            </div>
+            
+            <!-- Quick Suggestions Row -->
+            <div class="chat-suggestions" id="chat-suggestions-container">
+              <div class="suggestion-chip" onclick="askAiQuestion('I only have 30 minutes today.')">I only have 30 minutes today.</div>
+              <div class="suggestion-chip" onclick="askAiQuestion('How can I safely increase my squat weight?')">How to squat safely?</div>
+              <div class="suggestion-chip" onclick="askAiQuestion('Suggest a recovery day program.')">Suggest a recovery program.</div>
+              <div class="suggestion-chip" onclick="askAiQuestion('Create a meal plan template.')">Meal plan suggestions?</div>
+            </div>
+            
+            <form class="chat-input-row" onsubmit="submitAiChatForm(event)">
+              <input type="text" id="ai-chat-input" placeholder="Ask a question (e.g. Recommend a push workout)..." required
+                     style="flex: 1; background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; color: #fff; outline: none;">
+              <button type="submit" class="btn btn-primary">
+                <i data-lucide="send"></i> Send
+              </button>
+            </form>
+          </div>
+          
+          <!-- Coach info panel -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div class="card" style="text-align: center;">
+              <div style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-lime), var(--neon-cyan)); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--bg-primary);">
+                <i data-lucide="bot" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h4>Fitmonks AI Coach v1.0</h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.4;">
+                Powered by your profile metadata and local training history logs. It adapts to your changes instantly.
+              </p>
+            </div>
+            
+            <div class="card">
+              <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Context Parameters</h3>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">
+                <div>Height: <strong class="user-height-display" style="color:#fff">-- cm</strong></div>
+                <div>Weight: <strong class="user-weight-display" style="color:#fff">-- kg</strong></div>
+                <div>Goal: <strong id="coach-goal-display" style="color:#fff">--</strong></div>
+                <div>Level: <strong id="coach-level-display" style="color:#fff">--</strong></div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- 9. PROFILE / SETUP VIEW -->
+      <div id="view-profile" class="tab-view">
+        <div class="view-header">
+          <div class="view-title-container">
+            <h1 class="view-title">Profile Customization</h1>
+            <span class="view-subtitle">Adjust biometric details, workout targets, and daily goal ceilings</span>
+          </div>
+        </div>
+        
+        <div class="card" style="max-width: 800px;">
+          <form onsubmit="saveUserProfile(event)" class="custom-program-form">
+            <div class="profile-two-col">
+              <div class="form-group">
+                <label for="prof-name">Full Name</label>
+                <input type="text" id="prof-name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="prof-gender">Gender</label>
+                <select id="prof-gender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="profile-two-col">
+              <div class="form-group">
+                <label for="prof-age">Age (Years)</label>
+                <input type="number" id="prof-age" placeholder="28" required>
+              </div>
+              <div class="form-group">
+                <label for="prof-height">Height (cm)</label>
+                <input type="number" id="prof-height" placeholder="175" required>
+              </div>
+            </div>
+            
+            <div class="profile-two-col">
+              <div class="form-group">
+                <label for="prof-weight">Current Weight (kg)</label>
+                <input type="number" step="0.1" id="prof-weight" placeholder="70" required>
+              </div>
+              <div class="form-group">
+                <label for="prof-goal">Primary Fitness Goal</label>
+                <select id="prof-goal">
+                  <option value="Lose Weight">Lose Weight</option>
+                  <option value="Gain Muscle">Gain Muscle</option>
+                  <option value="Improve Strength">Improve Strength & Power</option>
+                  <option value="Consistency">Maintain Consistency</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="profile-two-col">
+              <div class="form-group">
+                <label for="prof-activity">Activity Level</label>
+                <select id="prof-activity">
+                  <option value="Sedentary">Sedentary (Little/no exercise)</option>
+                  <option value="Light">Lightly Active (1-3 days/week)</option>
+                  <option value="Moderate">Moderately Active (3-5 days/week)</option>
+                  <option value="Active">Very Active (6-7 days/week)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="prof-cal-target">Daily Calorie Target (kcal)</label>
+                <input type="number" id="prof-cal-target" placeholder="2000" required>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+              <button type="submit" class="btn btn-primary" style="flex: 1;">Save Profile Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+  
+  <!-- ============================================== -->
+  <!-- EXERCISE DETAILS MODAL -->
+  <!-- ============================================== -->
+  <div id="exercise-details-modal" class="modal-overlay" onclick="closeExerciseDetailsModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeExerciseDetailsModal(event)">
+        <i data-lucide="x"></i>
+      </button>
+      
+      <!-- Video / Loop Demonstrator -->
+      <div class="modal-header-banner">
+        <video id="modal-video-player" class="modal-video" autoplay loop muted playsinline>
+          <!-- Source populated dynamically -->
+        </video>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-title-row">
+          <div>
+            <h2 class="modal-title" id="modal-exercise-name">Exercise Name</h2>
+            <div class="modal-tags" id="modal-tags-container">
+              <!-- Tags populated dynamically -->
+            </div>
+          </div>
+          <button class="btn btn-secondary" id="modal-add-to-workout-btn" onclick="addExerciseFromModalToActiveWorkout()">
+            <i data-lucide="plus"></i> Add to Active Session
+          </button>
+        </div>
+        
+        <div class="modal-section">
+          <h4 class="modal-section-title">Overview Description</h4>
+          <p class="modal-text" id="modal-description">Description text.</p>
+        </div>
+        
+        <div class="modal-section">
+          <h4 class="modal-section-title">Common Mistakes</h4>
+          <ul class="modal-list" id="modal-mistakes-list">
+            <!-- Populated dynamically -->
+          </ul>
+        </div>
+        
+        <div class="modal-section">
+          <h4 class="modal-section-title">Safety & Form Instructions</h4>
+          <div class="modal-safety-box">
+            <i data-lucide="shield-alert" class="modal-safety-icon"></i>
+            <p class="modal-text" style="color: var(--text-primary);" id="modal-safety">Safety text.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ============================================== -->
+  <!-- WORKOUT EXERCISE PICKER MODAL -->
+  <!-- ============================================== -->
+  <div id="workout-picker-modal" class="modal-overlay" onclick="closeWorkoutExercisePicker()">
+    <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 500px;">
+      <button class="modal-close" onclick="closeWorkoutExercisePicker()">
+        <i data-lucide="x"></i>
+      </button>
+      
+      <div class="modal-body" style="padding-top: 2rem;">
+        <h3 style="margin-bottom: 1rem;">Select Exercise</h3>
+        
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <input type="text" id="picker-search" placeholder="Type to filter..." style="width: 100%; background-color: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--border-radius-md); padding: 0.75rem; color: #fff; outline: none;" oninput="filterPickerList()">
+        </div>
+        
+        <div id="picker-exercises-list" style="max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; padding-right: 0.25rem;">
+          <!-- list of exercises to click and select -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ============================================== -->
+  <!-- ACTIVE REST TIMER COUNTDOWN OVERLAY -->
+  <!-- ============================================== -->
+  <div id="rest-timer-overlay" class="rest-timer-overlay">
+    <div class="rest-timer-dial">
+      <svg width="220" height="220" class="rest-timer-svg">
+        <circle cx="110" cy="110" r="100" stroke="rgba(255,255,255,0.02)" stroke-width="12" fill="transparent"/>
+        <circle id="rest-timer-progress" class="rest-timer-circle" cx="110" cy="110" r="100" 
+                stroke="var(--neon-lime)" stroke-width="12" fill="transparent" 
+                stroke-dasharray="628" stroke-dashoffset="0"/>
+      </svg>
+      <div class="rest-timer-value" id="rest-clock-val">60</div>
+    </div>
+    
+    <h3 class="rest-timer-title">Resting</h3>
+    <p class="rest-timer-subtitle" id="rest-next-exercise-label">Next Set: --</p>
+    
+    <div style="display: flex; gap: 1rem;">
+      <button class="btn btn-secondary" onclick="addRestTime(15)">+15s</button>
+      <button class="btn btn-secondary" onclick="addRestTime(30)">+30s</button>
+      <button class="btn btn-primary" onclick="skipRestTimer()">Skip Rest</button>
+    </div>
+    
+    <!-- Subtle sound alert on completion -->
+    <audio id="timer-alert-sound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" preload="auto"></audio>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- SIGN IN / AUTHENTICATION MODAL -->
+  <!-- ============================================== -->
+  <div id="auth-modal" class="modal-overlay" onclick="closeAuthModal()">
+    <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 450px;">
+      <button class="modal-close" onclick="closeAuthModal()">
+        <i data-lucide="x"></i>
+      </button>
+      
+      <div class="modal-body" style="padding: 2.5rem 2rem 2rem;">
+        
+        <!-- Auth Tabs Toggle -->
+        <div style="display:flex; border-bottom:1px solid var(--border-color); margin-bottom: 2rem;">
+          <button id="auth-tab-signin" class="btn btn-secondary btn-primary" style="flex:1; border-radius:0; border:none; border-bottom: 2px solid var(--neon-lime); background:none; color:#fff;" onclick="toggleAuthTab('signin')">Sign In</button>
+          <button id="auth-tab-signup" class="btn btn-secondary" style="flex:1; border-radius:0; border:none; background:none; color:var(--text-secondary);" onclick="toggleAuthTab('signup')">Sign Up</button>
+        </div>
+
+        <!-- Demo Quick Log In Banner -->
+        <div style="background: rgba(204, 255, 0, 0.05); border: 1px dashed rgba(204, 255, 0, 0.2); padding: 1rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem; text-align: center;">
+          <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom: 0.5rem;">Evaluate the application instantly:</p>
+          <button class="btn btn-primary" style="width:100%; font-size: 0.85rem;" onclick="loginWithDemoProfile()">
+            <i data-lucide="sparkles"></i> One-Click Demo Login
+          </button>
+        </div>
+
+        <!-- Sign In Form -->
+        <form id="signin-form" class="custom-program-form" onsubmit="handleUserSignIn(event)">
+          <div class="form-group">
+            <label for="signin-email">Email Address</label>
+            <input type="email" id="signin-email" placeholder="example@fit.com" required value="guest@fittrack.com">
+          </div>
+          <div class="form-group">
+            <label for="signin-password">Password</label>
+            <input type="password" id="signin-password" placeholder="••••••••" required value="fitness123">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.75rem;">Log In</button>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signup-form" class="custom-program-form" onsubmit="handleUserSignUp(event)" style="display:none;">
+          <div class="form-group">
+            <label for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email Address</label>
+            <input type="email" id="signup-email" placeholder="john@fit.com" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="Min 6 characters" required minlength="6">
+          </div>
+          <div class="form-group">
+            <label for="signup-goal">Primary Fitness Goal</label>
+            <select id="signup-goal">
+              <option value="Lose Weight">Lose Weight</option>
+              <option value="Gain Muscle">Gain Muscle</option>
+              <option value="Improve Strength">Improve Strength & Power</option>
+              <option value="Consistency">Maintain Consistency</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.75rem;">Create Account</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  
+  <!-- ============================================== -->
+  <!-- SYSTEM TOAST ALERT CONTROLLERS -->
+  <!-- ============================================== -->
+  <div class="toast-container" id="toast-container-wrapper">
+    <!-- Toasts generated dynamically -->
+  </div>
+
+  <!-- Load exercise database and main application controller -->
+  <script src="exercises.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
